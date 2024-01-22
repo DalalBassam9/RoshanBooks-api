@@ -11,7 +11,7 @@ class OrderController extends Controller
 {
     public function getOrders()
     {
-        $orders = Order::with('user')->orderBy('created_at', 'desc')->paginate(5);
+        $orders = Order::with('user')->orderBy('created_at', 'desc')->paginate(10);
         return OrderResource::collection($orders);
     }
 
