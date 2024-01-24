@@ -41,10 +41,13 @@ class CartController extends Controller
         $user = auth()->user()->userId;
         if ($user) {
             $cart =  Cart::where(['userId' => $user, 'productId' => $request->productId])->first();
-            $cart->update(['quantity' => $request->quantity]);
+            if ($cart) {
+                $cart->update(['quantity' => $request->quantity]);
+                return new CartResource($cart);
+            } else {
+                return response()->json(['message' => 'Cart not found'], 404);
+            }
         }
-        return new  CartResource($cart);
-
     }
 
     public function deleteCart($cartId)
