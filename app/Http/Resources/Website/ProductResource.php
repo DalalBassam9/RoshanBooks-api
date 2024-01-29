@@ -20,7 +20,7 @@ class ProductResource extends JsonResource
             'productId' => $this->productId,
             'name'  => $this->name,
             'description' => $this->description,
-            'price' => $this->price,
+            'price' => number_format($this->price, 2) == number_format($this->price, 0) ? number_format($this->price, 0) : number_format($this->price, 2),
             'quantity' => $this->quantity,
             'sumRatings' => $this->ratings->count() > 0 ? round($this->ratings->sum('rating') / $this->ratings->count(), 1) : null,
             'countRatings' => $this->ratings->count() > 0 ? $this->ratings->count() : null,

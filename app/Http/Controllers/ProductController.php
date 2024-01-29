@@ -49,7 +49,7 @@ class ProductController extends Controller
             }
         }
 
-        $products = $query->orderBy('created_at', 'desc')->paginate(9);
+        $products = $query->orderBy('created_at', 'desc')->paginate(6);
 
         return ProductResource::collection($products);
     }
